@@ -123,6 +123,7 @@
 	label { display: table-cell; }
 	input { display: table-cell; text-align: right; font-size: 20px; max-width: 150px;}
 	table, th, td { border:1px solid black;}
+	textarea {font-size: 20px;}
 
 	#panel, #flip {
 	padding: 5px;
@@ -188,33 +189,33 @@ Enter a dollar amount in the table below to see the corresponding foreign exchan
 	</tr>
 	<tr>
 	<!--aligning the subheader to center and rates center-->
-	<td>Currency</td>
-	<td>Rate</td>
-	<td>Value</td>
+	<td  style="text-align:center">Currency</td>
+	<td style="text-align:center">Rate</td>
+	<td style="text-align:center">Value</td>
 	</tr>
 	<tr>
 	<td>Euro</td>
-	<td id="euro2"></td>
+	<td style="text-align:center" id="euro2"></td>
 	<td><input type="number" id="results1" readonly></td>
 	</tr>
 	<tr>
 	<td>Canadian Dollar</td>
-	<td id="cad2"></td>
+	<td style="text-align:center" id="cad2"></td>
 	<td><input type="number" id="results2" readonly></td>
 	</tr>
 	<tr>
 	<td>Hong Kong Dollar</td>
-	<td id="hkd2"></td>
+	<td style="text-align:center" id="hkd2"></td>
 	<td><input type="number" id="results3" readonly></td>
 	</tr>
 	<tr>
 	<td>Japanese Yen</td>
-	<td id="yen2"></td>
+	<td style="text-align:center" id="yen2"></td>
 	<td><input type="number" id="results4" readonly></td>
 	</tr>
 	<tr>
 	<td>Mexican Peso</td>
-	<td id="peso2"></td>
+	<td style="text-align:center" id="peso2"></td>
 	<td><input type="number" id="results5" readonly></td>
 	<tr>
 	<td>Enter Dollar Amount</td>
