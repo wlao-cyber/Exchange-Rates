@@ -1,4 +1,4 @@
-// import { euro_rate, cad_rate, hkd_rate, yen_rate, peso_rate } from "./rates.js";
+// import { euro_rate, cad_rate, hkd_rate, yen_rate, peso_rate } from "/rates.js";
 
 import {autoload} from "./autoload.js"
 import { calculations } from "./calculations.js";
