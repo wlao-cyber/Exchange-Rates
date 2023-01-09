@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<!-- author: Wilson Lao;  purpose: demonstrate toggling and an additional column; date of page creation: 2023-01-04 -->
+	<meta charset="utf-8">
+	<title>Exchange Rates</title>
+	<meta name="description" content="using form text boxes continued">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	
+	<script>
+
+		//jQuery to Show/Hide Instructions
+		$(document).ready(function(){
+		$("#flip").click(function(){
+			$("#backgroundinfo").slideToggle("slow");
+		});
+		});
+
+		// the jQuery script needs to use "#results" with # in front or just "textarea"
+		// placing the jQuery script first before the function seems to allow fading
+		// before results show up.
+
+		$(document).ready(function(){
+		$("#fade").click(function(){
+			$("#console").fadeTo("slow",0.25);
+		});
+		});
+
+		// Adding another jQuery script to give the option of unfading
+		$(document).ready(function(){
+		$("#unfade").click(function(){
+			$("#console").fadeTo("slow",1);
+		});
+		});
+
+		// the dollar rate for each currency should be constant and not change
+		// variables have to be global for calculations() function to use them.
+		const euro_rate = .94;
+		const cad_rate = 1.36;
+		const hkd_rate = 7.82;
+		const yen_rate = 130.31;
+		const peso_rate = 19.33;
+		
+		function autoload()
+		{
+
+		// Typically, you need the ids to be declared first before using innerHTML
+			// This will be null because ids are not declared yet.
+			// To prevent this, put this inside a function that loads immediately
+		document.getElementById("euro").innerHTML = euro_rate;
+		document.getElementById("cad").innerHTML = cad_rate;
+		document.getElementById("hkd").innerHTML = hkd_rate;
+		document.getElementById("yen").innerHTML = yen_rate;
+		document.getElementById("peso").innerHTML = peso_rate;
+
+
+		document.getElementById("euro2").innerHTML = euro_rate;
+		document.getElementById("cad2").innerHTML = cad_rate;
+		document.getElementById("hkd2").innerHTML = hkd_rate;
+		document.getElementById("yen2").innerHTML = yen_rate;
+		document.getElementById("peso2").innerHTML = peso_rate;
+
+		}
+
+		function calculations()
+		{
+
+		// autoload(euro, cad, hkd, yen, peso);
+		var number1, int1;
+		number1 = document.getElementById("usd_amount").value;
+
+		//parseInt to normalize number input into integers
+		//parseInt will also return NaN if input is NOT a number, as in the case of null input
+		int1 = parseInt(number1);
+
+		// add additional conversion check to ensure number
+		// number1_float = parseFloat(number1);
+
+		// Because of type="number" requirement in form inputs, only numbers should be allowed
+		// But still need to watch out for NaN if inputs are left blank. 
+		// if else statement checks if sum is an integer
+		// Otherwise, user will be asked to enter integer in each input box.
+		// This condition is still good for checking if there are any NaN but will force 
+		// the user to input a value in each input box.
+		if (Number.isInteger(int1))
+		{
+			// Adding .toFixed(2) to make 2 decimal places for the dollar amount.
+			document.getElementById("results_euro").value = (number1 * euro_rate).toFixed(2);
+			document.getElementById("results_cad").value = (number1 * cad_rate).toFixed(2);
+			document.getElementById("results_hkd").value = (number1 * hkd_rate).toFixed(2);
+			document.getElementById("results_yen").value = (number1 * yen_rate).toFixed(2);
+			document.getElementById("results_peso").value = (number1 * peso_rate).toFixed(2);
+
+		}
+		else{
+			document.getElementById("console").value = "Please enter a number in the input box!";
+		}
+		}
+
+		function reset()
+		{
+			document.getElementById("results_euro").value = "";
+			document.getElementById("results_cad").value = "";
+			document.getElementById("results_hkd").value = "";
+			document.getElementById("results_yen").value = "";
+			document.getElementById("results_peso").value = "";
+			document.getElementById("usd_amount").value = "";
+		}
+
+	</script>
+	
+	<!-- Using CSS to align input boxes -->
+	<!-- align input text to the right as well-->
+	<!-- Also using jQuery to show/hide panel-->
+	<style>
+	h1 {font-size: 3em; color:blue; text-align:center; font-style:italic}
+	h2 {font-size: 1em; color:black; text-align:left; font-weight:bold}
+	body {background-color:silver; font-size:1.5em}
+	p     { display: table-row;  }
+	label { display: table-cell; }
+	input { display: table-cell; text-align: right; font-size: 20px; max-width: 150px;}
+	table, th, td { border:1px solid black;}
+	textarea {font-size: 20px;}
+
+	#panel, #flip {
+	padding: 5px;
+	text-align: center;
+	background-color: #e5eecc;
+	border: solid 1px #c3c3c3;
+	}
+	</style>
+</head>
+
+<!--onload event handler may be causing issues with variables and functions from the modules-->
+<body onload="autoload()">
+
+	<header>
+		<h1>Exchange Rates</h1>
+	</header>
+	
+	
+		<div id="flip">Click to Show/Hide Instructions and Display the foreign exchange rates in January 2023</div>
+	
+	
+	<section id="backgroundinfo">
+	<h2>Exchange Rates for 1 USD on 2023-01-04</h2>	
+	
+	<table>
+		<tbody>
+			<!--setting variable into input for fixed currency values-->
+			<tr>
+			<td>Euro</td>
+			<td id="euro"></td>
+			</tr>
+			<tr>
+			<td>Canadian Dollar</td>
+			<td id="cad"></td>
+			</tr>
+			<tr>
+			<td>Hong Kong Dollar</td>
+			<td id="hkd"></td>
+			</tr>
+			<tr>
+			<td>Japanese Yen</td>
+			<td id="yen"></td>
+			</tr>
+			<tr>
+			<td>Mexican Peso</td>
+			<td id="peso"></td>
+			</tr>
+		</tbody>
+	</table>
+	<br><br>
+	Enter a dollar amount in the table below to see the corresponding foreign exchange values.
+	</section>
+	
+	
+	<section>
+		<h2>Enter the Amount of USD to convert</h2>	
+	
+	<table>
+	<tbody>
+	
+		<!--table header spanning 3 columnns up top-->
+		<tr>
+		<th colspan="3">Monetary Exchange Rates</th>
+		</tr>
+		<tr>
+		<!--aligning the subheader to center and rates center-->
+		<td  style="text-align:center">Currency</td>
+		<td style="text-align:center">Rate</td>
+		<td style="text-align:center">Value</td>
+		</tr>
+		<tr>
+		<td>Euro</td>
+		<td style="text-align:center" id="euro2"></td>
+		<td><input type="number" id="results_euro" readonly></td>
+		</tr>
+		<tr>
+		<td>Canadian Dollar</td>
+		<td style="text-align:center" id="cad2"></td>
+		<td><input type="number" id="results_cad" readonly></td>
+		</tr>
+		<tr>
+		<td>Hong Kong Dollar</td>
+		<td style="text-align:center" id="hkd2"></td>
+		<td><input type="number" id="results_hkd" readonly></td>
+		</tr>
+		<tr>
+		<td>Japanese Yen</td>
+		<td style="text-align:center" id="yen2"></td>
+		<td><input type="number" id="results_yen" readonly></td>
+		</tr>
+		<tr>
+		<td>Mexican Peso</td>
+		<td style="text-align:center" id="peso2"></td>
+		<td><input type="number" id="results_peso" readonly></td>
+		<tr>
+		<!--Placing label for ease of click accessibility into the table data-->
+		<!--also expanding the column to two columns-->
+		<td colspan="2"><label for="usd_amount">Enter US Dollar Amount</label></td>
+		<td><input type="number" id="usd_amount"></td>
+		</tr>
+		</tbody>
+	</table>
+	
+	<input type="button" onclick="calculations()" value="SUBMIT">
+	<input type="reset" onclick="reset()" value="RESET">
+	
+	</section>
+	
+	<section>
+	<h2>Console</h2>
+	<!-- making the textbox smaller this time in comparison to Part 2. 5 rows instead of 10-->
+	<textarea name="console" id="console" rows="5" cols="100" readonly></textarea><br>
+	
+	<!-- A button for fading and another for unfading-->
+	<button id="fade">Click to Fade Results</button>
+	<button id="unfade">Click to Unfade Results</button>
+	</section>
+	
+	<footer>
+	<br><br><br>
+	<a href="https://wlao-cyber.github.io/">Return to Main Page</a>
+	</footer>
+	
+	</body>
+	
+</html>
