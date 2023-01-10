@@ -1,0 +1,17 @@
+/* Also using jQuery to show/hide panel */
+
+h1 {font-size: 3em; color:blue; text-align:center; font-style:italic}
+h2 {font-size: 1em; color:black; text-align:left; font-weight:bold}
+body {background-color:silver; font-size:1.5em}
+p     { display: table-row;  }
+input { display: table-cell; text-align: right; font-size: 20px; max-width: 200px;}
+table, th, td { border:1px solid black;}
+textarea {font-size: 20px; max-width: 500px;}
+button {font-size: 15px;}
+
+#panel, #flip {
+padding: 5px;
+text-align: center;
+background-color: #e5eecc;
+border: solid 1px #c3c3c3;
+}
